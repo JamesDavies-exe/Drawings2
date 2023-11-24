@@ -1,0 +1,92 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter&family=Open+Sans:wght@300&family=Poppins:wght@300&family=Raleway:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    font-family: 'Poppins', sans-serif;
+    height: 100vh;
+    background-image: url(https://www.mactrast.com/wp-content/uploads/2016/07/instagram_gradient_wallpaper_mac.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.card{
+    background: rgba( 255, 255, 255, 0.1 );
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    backdrop-filter: blur( 9px );
+    -webkit-backdrop-filter: blur( 9px );
+    border-radius: 10px;
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+    position: relative;
+    width: 70%;
+    height: 70%;
+    margin: 0 auto;
+    transform: translateY(15%);
+}
+
+.logo{
+    width: 5%;
+    position: absolute;
+    margin-left: 55px;
+}
+
+.logo img{
+    width: 50px;
+}
+
+.navbar{
+    width: 100%;
+    height: 40px;
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.navbar ul li{
+    display: inline;
+    margin: 60px;
+}
+
+.header{
+    height: 60%;
+    width: 50%;
+    margin-top: 10%;
+    float: left;
+    gap: 30px;
+}
+
+.header p{
+    width: 50%;
+    margin: 0 auto;
+    font-size: 14px;
+}
+
+.title{
+    width: 50%;
+    height: 30%;
+    margin: 0 auto;
+    color: #5d517c;
+    font-family: 'Montserrat';
+    font-weight: 800;
+}
+
+.image{
+    margin-top: 30px;
+    width: 50%;
+    float: left;
+}
+
+@media only screen and (max-width: 1200px) {
+    .image{
+        display: none;
+    }
+
+    .header{
+        width: 100%;
+        height: 90%;
+    }
+  }
