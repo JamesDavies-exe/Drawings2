@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/index.css">
     <title>Sign in | Paint</title>
 </head>
 <body>
@@ -20,6 +21,10 @@
                 </ul>
             </div>
         </nav>
+
+        <div th:if="${passwordLength == true}">
+            La contraseña debe tener al menos 5 caracteres
+        </div>
 
         <div>
             <form action="register" method="post">

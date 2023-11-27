@@ -1,6 +1,7 @@
 package com.daviesjames.drawing2.controllers;
 
-import ch.qos.logback.core.model.Model;
+import com.daviesjames.drawing2.entities.User;
+import org.springframework.ui.Model;
 import com.daviesjames.drawing2.services.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,7 +27,15 @@ public class LoginAndRegisterController {
     public String register(Model model, @RequestParam String fullName,
                                   @RequestParam String username, @RequestParam String password){
 
-        userService.saveUser(fullName, username, password);
+        //Pasarlo al UserService
+        boolean passwordLength = false;
+        if (password.length() < 5){
+            passwordLength = true;
+            model.addAttribute("passwordLength", passwordLength);
+        }else {
+            userService.saveUser(fullName, username, password);
+            return "redirect:/login";
+        }
         return "register";
     }
 
@@ -39,7 +48,12 @@ public class LoginAndRegisterController {
 
     @PostMapping("/login")
     public String login(@RequestParam String username, @RequestParam String password){
-        System.out.println(username);
+        User user = userService.checkUser(username, password);
+
+        if (user != null){
+            System.out.println(user.getFullName() + " quiere iniciar sesión");
+        }
+
         return "login";
     }
 

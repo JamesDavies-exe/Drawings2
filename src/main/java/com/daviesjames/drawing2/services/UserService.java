@@ -17,4 +17,15 @@ public class UserService {
         user.setPassword(password);
         userRepo.saveUser(user);
     }
+
+    public User checkUser(String username, String password) {
+        User user = userRepo.findByUsernameAndPassword(username, password);
+        if (user == null){
+//            throw new UserOrPasswordIncorrectException();
+            System.out.println("El usuario no existe");
+        }
+        return user;
+    }
+
+
 }
