@@ -1,12 +1,17 @@
 package com.daviesjames.drawing2.controllers;
 
 import com.daviesjames.drawing2.entities.User;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.ui.Model;
 import com.daviesjames.drawing2.services.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.PostMapping;
+
+import java.net.http.HttpRequest;
+
 @Controller
 public class LoginAndRegisterController {
 
@@ -47,11 +52,13 @@ public class LoginAndRegisterController {
     }
 
     @PostMapping("/login")
-    public String login(@RequestParam String username, @RequestParam String password){
+    public String login(@RequestParam String username, @RequestParam String password, HttpServletRequest req){
         User user = userService.checkUser(username, password);
 
         if (user != null){
             System.out.println(user.getFullName() + " quiere iniciar sesión");
+            HttpSession session = req.getSession();
+            session.setAttribute("userId", user.getId());
         }
 
         return "login";

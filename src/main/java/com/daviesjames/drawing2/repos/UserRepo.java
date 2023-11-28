@@ -7,4 +7,6 @@ public interface UserRepo {
 
 
     User findByUsernameAndPassword(String username, String password);
+
+    boolean findById(int id);
 }

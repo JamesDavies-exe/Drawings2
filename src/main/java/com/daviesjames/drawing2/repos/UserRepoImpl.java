@@ -30,6 +30,14 @@ public class UserRepoImpl  implements UserRepo{
         return user;
     }
 
+    @Override
+    public boolean findById(int id) {
+        String sqlQuery = "select * from Users where userId=?";
+        User user = jdbcTemplate.queryForObject(sqlQuery, new BeanPropertyRowMapper<>(User.class), id);
+
+        return user != null;
+    }
+
     public static String encrypt(String password) {
         try {
             MessageDigest md = MessageDigest.getInstance("SHA-256");
