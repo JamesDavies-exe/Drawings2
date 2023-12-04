@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/myImages.css">
+    <title>Papelera</title>
+</head>
+<body>
+    <nav class="navbar">
+        <ul>
+            <li><a href="/">Iniciar</a></li>
+            <li><a href="/paint">Dibujar</a></li>
+            <li><a href="/myImages">Mis Imagenes</a></li>
+            <!-- <li><a href="/community">Comunidad</a></li> -->
+        </ul>
+      </nav>
+      <div class="table">
+        <div class="table-header">
+            <div class="header__item">Nombre</div>
+            <div class="header__item">Fecha de creación</div>
+            <div class="header__item">-</div>
+            <div class="header__item">-</div>
+        </div>
+        <div th:each="image: ${binList}" class="table-content">
+            <div class="table-row">
+                <div class="table-data">[[${image.getName()}]]</div>
+                <div class="table-data">[[${image.getCreationDate()}]]</div>
+                <div class="table-data">
+                    <button onclick="recuperar()">Recuperar</button>
+                </div>
+                <div class="table-data">
+                    <button onclick="eliminar()">Eliminar</button>
+                </div>
+            </div>
+        </div>
+    <script>
+        function eliminar(){
+    console.log( "Enviando " + document.getElementById("imageId").value)
+    fetch('http://localhost:8080/removeFromBin', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+    },
+      body: JSON.stringify(document.getElementById("imageId").value)
+  })
+  .then(response => {
+      if (!response.ok) {
+          throw new Error('Error al enviar dato');
+      }
+      return response.json();
+  })
+  .then(data => {
+      console.log(data); // Manejar la respuesta del servidor si es necesario
+  })
+  .catch(error => {
+      console.error('Error:', error);
+  });
+  document.location.reload();
+}
+
+function recuperar(){
+    console.log( "Enviando " + document.getElementById("imageId").value)
+    fetch('http://localhost:8080/recoverFromBin', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+    },
+      body: JSON.stringify(document.getElementById("imageId").value)
+  })
+  .then(response => {
+      if (!response.ok) {
+          throw new Error('Error al enviar dato');
+      }
+      return response.json();
+  })
+  .then(data => {
+      console.log(data); // Manejar la respuesta del servidor si es necesario
+  })
+  .catch(error => {
+      console.error('Error:', error);
+  });
+  document.location.reload();
+}
+    </script>
+</body>
+</html>

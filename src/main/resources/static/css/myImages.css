@@ -1,0 +1,85 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter&family=Open+Sans:wght@300&family=Poppins:wght@300&family=Raleway:wght@500&display=swap');
+
+body{
+    background-color: #02070D;
+    color: white;
+    font-family: 'Poppins', sans-serif;
+}
+
+nav{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 70px;
+    font-size: 18px;
+    font-weight: 500;
+  }
+  
+  nav ul li{
+    display: inline;
+    margin: 60px;
+  }
+  a{
+    text-decoration: none;
+    color: white;
+    transition: 0.5s;
+    cursor: default;
+  }
+  
+  a:hover{
+    color: rgba(255, 255, 255, 0.637);
+  }
+  .table {
+    width: 100%;
+    border: 1px solid #EEEEEE;
+  }
+  
+  .table-header {
+    display: flex;
+    width: 100%;
+    background: #000;
+    padding: 18px 0;
+  }
+  
+  .table-row {
+    display: flex;
+    width: 100%;
+    padding: 18px 0;
+  }
+  .table-row:nth-of-type(odd) {
+    background: #000000;
+  }
+  
+  .table-data, .header__item {
+    flex: 1 1 20%;
+    text-align: center;
+  }
+  
+  .header__item {
+    text-transform: uppercase;
+  }
+  
+  .filter__link {
+    color: white;
+    text-decoration: none;
+    position: relative;
+    display: inline-block;
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+  .filter__link::after {
+    content: "";
+    position: absolute;
+    right: -18px;
+    color: white;
+    font-size: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  .filter__link.desc::after {
+    content: "(desc)";
+  }
+  .filter__link.asc::after {
+    content: "(asc)";
+  }

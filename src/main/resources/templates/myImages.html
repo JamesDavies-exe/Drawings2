@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/myImages.css">
+</head>
+<body>
+    <nav class="navbar">
+        <ul>
+            <li><a href="/">Iniciar</a></li>
+            <li><a href="/paint">Dibujar</a></li>
+            <!-- <li><a href="/community">Comunidad</a></li> -->
+            <li><a href="/bin">Papelera</a></li>
+        </ul>
+      </nav>
+      <div class="table">
+        <div class="table-header">
+            <div class="header__item">Nombre</div>
+            <div class="header__item">Fecha de creación</div>
+            <div class="header__item">Publico</div>
+            <div class="header__item">-</div>
+            <div class="header__item">-</div>
+        </div>
+        <div th:each="image: ${imagesList}" class="table-content">
+            <div class="table-row">
+                <div class="table-data">[[${image.getName()}]]</div>
+                <div class="table-data">[[${image.getCreationDate()}]]</div>
+                <div class="table-data">
+                    <button onclick="cambiarPrivacidad()">Cambiar privacidad</button>
+                </div>
+                <div class="table-data">
+                    <form action="/view" method="post">
+                        <input th:value="${image.getId()}" type="hidden" name="imageId" id="imageId">
+                        <button id="ver">Ver</button>
+                    </form>
+                </div>
+                <div class="table-data">
+                    <button onclick="borrarImagen()">Borrar</button>
+                </div>
+            </div>
+        </div>
+</body>
+<script src="/js/myImages.js"></script>
+</html>

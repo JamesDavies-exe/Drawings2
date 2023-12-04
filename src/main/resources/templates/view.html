@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/paint.css">
+    <title>Document</title>
+</head>
+<body>
+    <nav class="navbar">
+        <ul>
+            <li><a href="/">Iniciar</a></li>
+            <li><a href="/paint">Dibujar</a></li>
+            <li><a href="/myImages">Mis Imagenes</a></li>
+            <li><a href="/community">Comunidad</a></li>
+        </ul>
+      </nav>
+    <div class="figuresCard" id="titleDiv">
+        <ul id="list">
+
+        </ul>
+    </div>
+    <div class="card">
+        <div class="canvas">
+            <canvas id="myCanvas" width="1400" height="700"></canvas>
+        </div>
+    </div>
+
+    <input th:value="${imageData}" type="hidden" id="initialJson">
+
+    <div class="optionsCard">
+        <form action="modify" method="post">
+            <select name="select" id="select">
+                <option value="title" disabled selected>Tipo de figura</option>
+                <option value="cuadrado">Cuadrado</option>
+                <option value="circulo">Circulo</option>
+                <option value="triangulo">Triangulo</option>
+                <option value="estrella">Estrella</option>
+            </select>
+            <input type="color" value="#ffd3d6" name="color" id="style1">
+            <label for="size">Relleno :</label>
+            <input type="checkbox" id="fill">
+            <label for="size">Tamaño :</label>
+            <input type="range" min="0" max="300" id="range1">
+            <input type="hidden" name="jsonInfo" id="jsonInfo">
+            <input th:value="${imageId}" type="hidden" name="imageId">
+            <input type="submit" value="Submit" id="formSubmit">
+        </form>
+    </div>
+        <ul th:each="version: ${versionList}">
+        <form action="/view" method="post">
+            <input th:value="${version.getId()}" type="hidden" name="imageId">
+           <li><input type="submit" value="Ver"></li> 
+        </form>
+    </ul>
+
+</body>
+<script type="module" src="/js/view.js"></script>
+</html>

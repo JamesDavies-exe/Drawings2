@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/paint.css">
+    <title>Paint</title>
+</head>
+<body>
+    <nav class="navbar">
+        <ul>
+            <li><a href="/index">Iniciar</a></li>
+            <li>Dibujar</li>
+            <li><a href="/myImages">Mis Imagenes</a></li>
+            <li><a href="/community">Comunidad</a></li>
+        </ul>
+      </nav>
+    <div class="figuresCard" id="titleDiv">
+        <ul id="list">
+
+        </ul>
+    </div>
+    <div class="card">
+        <div class="canvas">
+            <canvas id="myCanvas" width="1400" height="700"></canvas>
+        </div>
+    </div>
+
+    <div class="optionsCard">
+        <!-- <form action="paint" method="post"> -->
+            <input type="text" placeholder="Nombre de la figura" name="name" id="name">
+            <select name="select" id="select">
+                <option value="title" disabled selected>Tipo de figura</option>
+                <option value="cuadrado">Cuadrado</option>
+                <option value="circulo">Circulo</option>
+                <option value="triangulo">Triangulo</option>
+                <option value="estrella">Estrella</option>
+            </select>
+            <input type="color" value="#ffd3d6" name="color" id="style1">
+            <label for="size">Relleno :</label>
+            <input type="checkbox" id="fill">
+            <label for="size">Tamaño :</label>
+            <input type="range" min="0" max="300" id="range1">
+            <input type="hidden" name="jsonInfo" id="jsonInfo">
+            <input type="submit" value="Submit" id="formSubmit">
+            <button id="formSubmit">Guardar</button>
+        <!-- </form> -->
+        <button id="clear">Clear</button>
+    </div>
+    <script type="module" src="/js/paint.js"></script>
+</body>
+</html>
