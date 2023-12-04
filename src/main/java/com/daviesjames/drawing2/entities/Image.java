@@ -5,9 +5,10 @@ import java.time.LocalDate;
 public class Image {
     int id;
     String name;
-    String jsonInfo;
     LocalDate creationDate;
     int ownerId;
+    int publicity;
+    String papelera;
 
     public int getId() {
         return id;
@@ -25,14 +26,6 @@ public class Image {
         this.name = name;
     }
 
-    public String getJsonInfo() {
-        return jsonInfo;
-    }
-
-    public void setJsonInfo(String jsonInfo) {
-        this.jsonInfo = jsonInfo;
-    }
-
     public LocalDate getCreationDate() {
         return creationDate;
     }
@@ -47,5 +40,18 @@ public class Image {
 
     public void setOwnerId(int userId) {
         this.ownerId = userId;
+    }
+
+    public int getPublicity() {
+        return publicity;
+    }
+
+
+    public String getPapelera() {
+        return papelera;
+    }
+
+    public void setPapelera(String papelera) {
+        this.papelera = papelera;
     }
 }

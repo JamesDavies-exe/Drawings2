@@ -1,5 +1,8 @@
 package com.daviesjames.drawing2.controllers;
 
+import com.daviesjames.drawing2.Exceptions.InvalidPassword;
+import com.daviesjames.drawing2.Exceptions.NoArguments;
+import com.daviesjames.drawing2.Exceptions.UserIncorrect;
 import com.daviesjames.drawing2.entities.User;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
@@ -32,14 +35,21 @@ public class LoginAndRegisterController {
     public String register(Model model, @RequestParam String fullName,
                                   @RequestParam String username, @RequestParam String password){
 
-        //Pasarlo al UserService
-        boolean passwordLength = false;
-        if (password.length() < 5){
-            passwordLength = true;
-            model.addAttribute("passwordLength", passwordLength);
-        }else {
+boolean errorArgument = false;
+boolean errorPassword = false;
+        try {
             userService.saveUser(fullName, username, password);
             return "redirect:/login";
+        }
+        catch (NoArguments e){
+            errorArgument = true;
+            model.addAttribute("errorArgument", errorArgument);
+            model.addAttribute("error", e.getMessage());
+        }
+        catch (InvalidPassword e){
+            errorPassword = true;
+            model.addAttribute("errorPassword", errorPassword);
+            model.addAttribute("error", e.getMessage());
         }
         return "register";
     }
@@ -52,13 +62,18 @@ public class LoginAndRegisterController {
     }
 
     @PostMapping("/login")
-    public String login(@RequestParam String username, @RequestParam String password, HttpServletRequest req){
-        User user = userService.checkUser(username, password);
-
-        if (user != null){
-            System.out.println(user.getFullName() + " quiere iniciar sesión");
+    public String login(Model model,@RequestParam String username, @RequestParam String password, HttpServletRequest req) throws UserIncorrect {
+boolean userError = false;
+        try{
+            User user = userService.checkUser(username, password);
             HttpSession session = req.getSession();
             session.setAttribute("userId", user.getId());
+            return "redirect:/paint";
+        }
+        catch (UserIncorrect e){
+            userError = true;
+            model.addAttribute("userError", userError);
+            model.addAttribute("error", e.getMessage());
         }
 
         return "login";

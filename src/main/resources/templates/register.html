@@ -15,15 +15,15 @@
             <div class="navbar">
                 <ul>
                     <li>Inicio</li>
-                    <li>Pintar</li>
-                    <li>Mis Imagenes</li>
-                    <li>Comunidad</li>
+                    <li><a href="/paint">Dibujar</a></li>
+                    <li><a href="/myImages">Mis Imagenes</a></li>
+                    <!-- <li><a href="/community">Comunidad</a></li> -->
                 </ul>
             </div>
         </nav>
 
-        <div th:if="${passwordLength == true}">
-            La contraseña debe tener al menos 5 caracteres
+        <div th:if="${errorArgument == true || errorPassword == true}">
+            [[${error}]]
         </div>
 
         <div>

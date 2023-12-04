@@ -15,12 +15,13 @@ public class LoginFilter implements HandlerInterceptor {
     @Autowired
     UserRepo userRepo;
 
-    public boolean preHandle(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        HttpSession session = req.getSession();
-        int id = (int) session.getAttribute("userId");
-        if (!userRepo.findById(id)){
-            resp.sendRedirect("/login");
-        }
+
+    @Override
+    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+        HttpSession session = request.getSession();
+        Object o = session.getAttribute("userId");
+        if (o == null) response.sendRedirect("/login");
         return true;
     }
+
 }

@@ -31,11 +31,11 @@ public class UserRepoImpl  implements UserRepo{
     }
 
     @Override
-    public boolean findById(int id) {
-        String sqlQuery = "select * from Users where userId=?";
+    public User findById(int id) {
+        String sqlQuery = "select * from Users where id=?";
         User user = jdbcTemplate.queryForObject(sqlQuery, new BeanPropertyRowMapper<>(User.class), id);
 
-        return user != null;
+        return user;
     }
 
     public static String encrypt(String password) {
